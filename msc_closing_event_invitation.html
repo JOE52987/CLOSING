@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MSC Nile University – Closing Event 2026</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ms-blue: #0078D4;
+    --ms-dark: #004578;
+    --ms-light: #50E6FF;
+    --glass-bg: rgba(255, 255, 255, 0.07);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --glass-hover: rgba(255, 255, 255, 0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #030d1a;
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ── Background ── */
+  .bg-layer {
+    position: fixed; inset: 0; z-index: 0; overflow: hidden;
+    background: radial-gradient(ellipse 80% 60% at 20% 10%, rgba(0,120,212,0.28) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 80% 80%, rgba(0,69,120,0.35) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 60% 30%, rgba(80,230,255,0.08) 0%, transparent 50%),
+                linear-gradient(160deg, #020c18 0%, #050f1f 40%, #040b17 100%);
+  }
+
+  .grid-overlay {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,120,212,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,120,212,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 30%, transparent 100%);
+  }
+
+  /* ── Particles ── */
+  #canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+
+  /* ── Floating shapes ── */
+  .shape {
+    position: fixed; border-radius: 50%; filter: blur(80px);
+    animation: drift 18s ease-in-out infinite; z-index: 0; pointer-events: none;
+  }
+  .shape-1 { width: 400px; height: 400px; background: rgba(0,120,212,0.12); top: -100px; left: -100px; animation-duration: 20s; }
+  .shape-2 { width: 300px; height: 300px; background: rgba(80,230,255,0.07); top: 40%; right: -80px; animation-duration: 25s; animation-delay: -8s; }
+  .shape-3 { width: 250px; height: 250px; background: rgba(0,69,120,0.15); bottom: -60px; left: 30%; animation-duration: 22s; animation-delay: -5s; }
+
+  @keyframes drift {
+    0%,100% { transform: translate(0,0) scale(1); }
+    33%      { transform: translate(40px,-30px) scale(1.05); }
+    66%      { transform: translate(-20px,20px) scale(0.97); }
+  }
+
+  /* ── Layout ── */
+  .wrapper { position: relative; z-index: 10; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px 60px; }
+
+  /* ── Entrance animations ── */
+  .fade-up { opacity: 0; transform: translateY(32px); animation: fadeUp 0.8s ease forwards; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  .fade-up.d1 { animation-delay: 0.1s; }
+  .fade-up.d2 { animation-delay: 0.25s; }
+  .fade-up.d3 { animation-delay: 0.4s; }
+  .fade-up.d4 { animation-delay: 0.55s; }
+  .fade-up.d5 { animation-delay: 0.7s; }
+  .fade-up.d6 { animation-delay: 0.85s; }
+  .fade-up.d7 { animation-delay: 1.0s; }
+
+  /* ── Header bar ── */
+  .header-bar {
+    width: 100%; max-width: 880px;
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 56px; padding: 14px 24px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    backdrop-filter: blur(16px);
+  }
+  .header-bar .badge {
+    font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--ms-light); background: rgba(80,230,255,0.1);
+    padding: 4px 14px; border-radius: 50px; border: 1px solid rgba(80,230,255,0.2);
+  }
+  .header-bar .year { font-size: 13px; color: rgba(255,255,255,0.45); font-weight: 400; }
+
+  /* ── Logo section ── */
+  .logo-section {
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+    margin-bottom: 40px; text-align: center;
+  }
+  .logo-container {
+    width: 110px; height: 110px; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 20px 60px rgba(0,0,0,0.4);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .logo-container:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 0 0 1px rgba(255,255,255,0.18), 0 28px 70px rgba(0,0,0,0.5); }
+  .logo-container img { width: 84px; height: 84px; object-fit: contain; display: block; }
+  .logo-org { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.5); letter-spacing: 0.4px; }
+
+  /* ── Divider ── */
+  .divider {
+    width: 60px; height: 2px; margin: 0 auto 36px;
+    background: linear-gradient(90deg, transparent, var(--ms-blue), var(--ms-light), var(--ms-blue), transparent);
+    border-radius: 2px;
+  }
+
+  /* ── Hero text ── */
+  .hero { text-align: center; max-width: 720px; margin-bottom: 56px; }
+  .tag-line {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--ms-light); margin-bottom: 20px;
+  }
+  .tag-line::before, .tag-line::after {
+    content: ''; flex: 1; height: 1px; width: 30px;
+    background: linear-gradient(90deg, transparent, var(--ms-light));
+  }
+  .tag-line::after { background: linear-gradient(270deg, transparent, var(--ms-light)); }
+
+  .hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 800; line-height: 1.05;
+    background: linear-gradient(135deg, #fff 0%, #cce8ff 40%, var(--ms-light) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; margin-bottom: 24px;
+    letter-spacing: -1.5px;
+  }
+  .hero p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem); font-weight: 300;
+    color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 560px; margin: 0 auto;
+  }
+
+  /* ── Info cards ── */
+  .info-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px; width: 100%; max-width: 780px; margin-bottom: 56px;
+  }
+  .info-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px; padding: 28px 24px;
+    backdrop-filter: blur(20px);
+    text-align: center;
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+  }
+  .info-card:hover {
+    transform: translateY(-6px);
+    background: var(--glass-hover);
+    border-color: rgba(0,120,212,0.4);
+    box-shadow: 0 16px 40px rgba(0,120,212,0.15);
+  }
+  .info-card .icon-wrap {
+    width: 52px; height: 52px; border-radius: 14px; margin: 0 auto 16px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, rgba(0,120,212,0.3), rgba(80,230,255,0.15));
+    border: 1px solid rgba(0,120,212,0.3);
+    font-size: 22px; color: var(--ms-light);
+    transition: transform 0.3s ease;
+  }
+  .info-card:hover .icon-wrap { transform: scale(1.1) rotate(-5deg); }
+  .info-card .label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+  .info-card .value { font-size: 1.05rem; font-weight: 600; color: #fff; line-height: 1.4; }
+  .info-card .sub { font-size: 0.8rem; color: rgba(255,255,255,0.45); margin-top: 4px; }
+
+  /* ── Closing message ── */
+  .message-section {
+    max-width: 680px; width: 100%; margin-bottom: 56px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px; padding: 40px 36px;
+    backdrop-filter: blur(20px); text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .message-section::before {
+    content: '\201C';
+    position: absolute; top: -10px; left: 24px;
+    font-family: 'Poppins', sans-serif; font-size: 120px; font-weight: 800;
+    color: rgba(0,120,212,0.12); line-height: 1; pointer-events: none;
+  }
+  .message-section h2 {
+    font-family: 'Poppins', sans-serif; font-size: 1.45rem;
+    font-weight: 700; margin-bottom: 16px; color: #fff;
+  }
+  .message-section p {
+    font-size: 1rem; line-height: 1.85; color: rgba(255,255,255,0.6); font-weight: 300;
+  }
+  .message-section p strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+  .message-stars { display: flex; justify-content: center; gap: 6px; margin-top: 20px; }
+  .message-stars i { color: var(--ms-blue); font-size: 14px; }
+
+  /* ── RSVP ── */
+  .rsvp-section { text-align: center; margin-bottom: 48px; }
+  .rsvp-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 20px; }
+
+  .rsvp-btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600;
+    color: #fff; text-decoration: none; cursor: pointer; border: none;
+    padding: 18px 48px; border-radius: 50px;
+    background: linear-gradient(135deg, var(--ms-dark), var(--ms-blue));
+    position: relative; overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 24px rgba(0,120,212,0.4);
+    letter-spacing: 0.3px;
+  }
+  .rsvp-btn::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--ms-blue), var(--ms-light));
+    opacity: 0; transition: opacity 0.35s ease;
+  }
+  .rsvp-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 40px rgba(0,120,212,0.55); }
+  .rsvp-btn:hover::before { opacity: 1; }
+  .rsvp-btn span, .rsvp-btn i { position: relative; z-index: 1; }
+  .rsvp-btn:active { transform: scale(0.98); }
+
+  /* ── Modal ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 100;
+    background: rgba(2,12,24,0.85); backdrop-filter: blur(10px);
+    align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: linear-gradient(145deg, #071828, #0a1e35);
+    border: 1px solid rgba(0,120,212,0.3); border-radius: 28px;
+    padding: 48px 40px; max-width: 420px; width: 100%; text-align: center;
+    animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1) both;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+  }
+  @keyframes popIn { from { opacity: 0; transform: scale(0.85) translateY(20px); } }
+  .modal .check { font-size: 52px; color: #50E6FF; margin-bottom: 16px; }
+  .modal h3 { font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; }
+  .modal p { color: rgba(255,255,255,0.55); font-size: 0.9rem; line-height: 1.7; margin-bottom: 28px; }
+  .modal-close {
+    background: var(--glass-bg); border: 1px solid var(--glass-border);
+    color: #fff; font-family: 'Inter', sans-serif; font-size: 0.9rem;
+    padding: 12px 32px; border-radius: 50px; cursor: pointer; transition: background 0.25s;
+  }
+  .modal-close:hover { background: rgba(0,120,212,0.2); }
+
+  /* ── Footer ── */
+  .footer { text-align: center; color: rgba(255,255,255,0.2); font-size: 0.78rem; line-height: 2; }
+  .footer a { color: rgba(0,120,212,0.6); text-decoration: none; }
+
+  /* ── Separator dots ── */
+  .dot-row { display: flex; gap: 6px; justify-content: center; margin: 32px 0; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ms-blue); opacity: 0.3; }
+  .dot.active { opacity: 1; background: var(--ms-light); }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .header-bar { padding: 12px 16px; }
+    .header-bar .year { display: none; }
+    .info-cards { grid-template-columns: 1fr; }
+    .message-section { padding: 28px 22px; }
+    .rsvp-btn { padding: 16px 32px; font-size: 0.9rem; }
+    .modal { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Background layers -->
+<div class="bg-layer"><div class="grid-overlay"></div></div>
+<div class="shape shape-1"></div>
+<div class="shape shape-2"></div>
+<div class="shape shape-3"></div>
+<canvas id="canvas"></canvas>
+
+<div class="wrapper">
+
+  <!-- Header bar -->
+  <div class="header-bar fade-up d1">
+    <span class="badge"><i class="fa-solid fa-star" style="margin-right:6px;font-size:10px;"></i> Closing Event</span>
+    <span class="year">Academic Year 2025 / 2026</span>
+  </div>
+
+  <!-- Logo -->
+  <div class="logo-section fade-up d2">
+    <div class="logo-container">
+      <img src="IMG_6235.PNG" alt="Microsoft Student Clubs Nile University Logo" onerror="this.parentElement.innerHTML='<span style=&quot;font-size:42px;&quot;>🪟</span>'" />
+    </div>
+    <span class="logo-org">Microsoft Student Clubs &nbsp;·&nbsp; Nile University</span>
+  </div>
+
+  <div class="divider fade-up d2"></div>
+
+  <!-- Hero -->
+  <div class="hero fade-up d3">
+    <div class="tag-line">You're Invited</div>
+    <h1>Celebrate<br>With Us!</h1>
+    <p>Join us as we celebrate another successful year of <strong style="color:#cce8ff;font-weight:500;">innovation</strong>, <strong style="color:#cce8ff;font-weight:500;">learning</strong>, and <strong style="color:#cce8ff;font-weight:500;">community</strong> — and close this chapter with the people who made it unforgettable.</p>
+  </div>
+
+  <!-- Info cards -->
+  <div class="info-cards fade-up d4">
+    <div class="info-card">
+      <div class="icon-wrap"><i class="fa-solid fa-calendar-days"></i></div>
+      <div class="label">Date</div>
+      <div class="value">Thursday, June 25</div>
+      <div class="sub">2026</div>
+    </div>
+    <div class="info-card">
+      <div class="icon-wrap"><i class="fa-solid fa-clock"></i></div>
+      <div class="label">Time</div>
+      <div class="value">3:30 PM</div>
+      <div class="sub">Doors open early</div>
+    </div>
+    <div class="info-card">
+      <div class="icon-wrap"><i class="fa-solid fa-location-dot"></i></div>
+      <div class="label">Location</div>
+      <div class="value">Nile University</div>
+      <div class="sub">Campus Venue</div>
+    </div>
+  </div>
+
+  <!-- Closing message -->
+  <div class="message-section fade-up d5">
+    <h2>A Year Worth Celebrating ✦</h2>
+    <p>
+      This year, we pushed boundaries, built projects that matter, and grew a community that truly supports each other.
+      Every workshop attended, every hackathon survived, and every late-night session — it all led here.
+      <br><br>
+      <strong>The memories we've made are just the beginning.</strong> As one chapter ends, a world of opportunity opens. We're proud of every one of you, and we can't wait to see where you go next.
+    </p>
+    <div class="message-stars">
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+    </div>
+  </div>
+
+  <!-- Dot separator -->
+  <div class="dot-row fade-up d5">
+    <div class="dot"></div>
+    <div class="dot active"></div>
+    <div class="dot"></div>
+  </div>
+
+  <!-- RSVP -->
+  <div class="rsvp-section fade-up d6">
+    <p class="rsvp-label">Secure your seat</p>
+    <button class="rsvp-btn" onclick="openModal()">
+      <i class="fa-solid fa-check-circle"></i>
+      <span>Confirm Attendance</span>
+      <i class="fa-solid fa-arrow-right" style="font-size:14px;"></i>
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer fade-up d7">
+    <p>Microsoft Student Clubs &nbsp;·&nbsp; Nile University &nbsp;·&nbsp; Closing Event 2026</p>
+    <p>Organized with <i class="fa-solid fa-heart" style="color:#0078D4;font-size:10px;"></i> by the MSC Leadership Team</p>
+  </div>
+
+</div>
+
+<!-- RSVP Modal -->
+<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="check"><i class="fa-solid fa-circle-check"></i></div>
+    <h3>You're In! 🎉</h3>
+    <p>Your attendance has been confirmed for the MSC Nile University Closing Event 2026.<br>We'll see you on <strong style="color:#fff;">Thursday, June 25 at 3:30 PM</strong>.</p>
+    <button class="modal-close" onclick="closeModal()">Awesome, see you there!</button>
+  </div>
+</div>
+
+<script>
+/* ── Particle canvas ── */
+(function() {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  const COLORS = ['rgba(0,120,212,', 'rgba(80,230,255,', 'rgba(0,69,120,'];
+
+  class Particle {
+    constructor() { this.reset(true); }
+    reset(init) {
+      this.x = Math.random() * W;
+      this.y = init ? Math.random() * H : H + 10;
+      this.r = Math.random() * 1.8 + 0.4;
+      this.vx = (Math.random() - 0.5) * 0.3;
+      this.vy = -(Math.random() * 0.5 + 0.15);
+      this.alpha = Math.random() * 0.5 + 0.1;
+      this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+      this.twinkle = Math.random() * Math.PI * 2;
+      this.twinkleSpeed = 0.02 + Math.random() * 0.02;
+    }
+    update() {
+      this.x += this.vx; this.y += this.vy;
+      this.twinkle += this.twinkleSpeed;
+      if (this.y < -10) this.reset(false);
+    }
+    draw() {
+      const a = this.alpha * (0.6 + 0.4 * Math.sin(this.twinkle));
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = this.color + a + ')';
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < 90; i++) particles.push(new Particle());
+
+  let lines_on = true;
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => { p.update(); p.draw(); });
+
+    // Connecting lines between nearby particles
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 110) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(0,120,212,${0.07 * (1 - dist/110)})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── Modal ── */
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
